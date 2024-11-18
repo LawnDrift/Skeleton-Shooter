@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu5fkf32ninrb"]
+
+[ext_resource type="Texture2D" uid="uid://cfd80r0kwx07n" path="res://Effects/flameEffect.png" id="1_tncub"]
+[ext_resource type="AudioStream" uid="uid://d2vufvek3vk37" path="res://Music and Sounds/Swipe.wav" id="2_xka0q"]
+[ext_resource type="Script" path="res://Effects/flame_effect.gd" id="2_y7xct"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaj0o"]
+atlas = ExtResource("1_tncub")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj2r0"]
+atlas = ExtResource("1_tncub")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da0d7"]
+atlas = ExtResource("1_tncub")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud4be"]
+atlas = ExtResource("1_tncub")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wosg3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaj0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj2r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da0d7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud4be")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="FlameEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_wosg3")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_y7xct")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xka0q")
+autoplay = true
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
