@@ -1,0 +1,178 @@
+[gd_scene load_steps=16 format=3 uid="uid://dxtbv2rwlomxq"]
+
+[ext_resource type="Script" path="res://Enemies/true_ghost.gd" id="1_85p8b"]
+[ext_resource type="Texture2D" uid="uid://7fjajgqun3k5" path="res://Shadows/MediumShadow.png" id="1_u4lr0"]
+[ext_resource type="Texture2D" uid="uid://bnnhjq85l3150" path="res://Enemies/trueGhost.png" id="2_xa57e"]
+[ext_resource type="PackedScene" uid="uid://bifj7t1srbgxt" path="res://Hurtboxes and Hitboxes/hurtbox.tscn" id="4_rp0au"]
+[ext_resource type="PackedScene" uid="uid://cfuel55wr8154" path="res://Hurtboxes and Hitboxes/hitbox.tscn" id="5_i422c"]
+[ext_resource type="PackedScene" uid="uid://ci7fns8317kod" path="res://stats.tscn" id="6_3ocem"]
+[ext_resource type="PackedScene" uid="uid://ch226rdccj0mx" path="res://player_detection_zone.tscn" id="7_c0krs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wipsl"]
+radius = 3.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v24rc"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm06p"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u755e"]
+radius = 101.005
+
+[sub_resource type="Animation" id="Animation_5ew3m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.235294)]
+}
+
+[sub_resource type="Animation" id="Animation_md5ef"]
+resource_name = "ghost_appearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.466667, 0.666667, 0.833333, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.203922), Color(1, 1, 1, 0.415686), Color(1, 1, 1, 0.596078), Color(1, 1, 1, 0.8), Color(1, 1, 1, 0.905882), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.433333, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.235294), Color(1, 1, 1, 0.337255), Color(1, 1, 1, 0.556863), Color(1, 1, 1, 0.647059), Color(1, 1, 1, 0.784314)]
+}
+
+[sub_resource type="Animation" id="Animation_7a0e6"]
+resource_name = "ghost_desappearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.87451), Color(1, 1, 1, 0.654902), Color(1, 1, 1, 0.45098), Color(1, 1, 1, 0.298039), Color(1, 1, 1, 0.12549), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.766667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.415686), Color(1, 1, 1, 0.305882), Color(1, 1, 1, 0.235294)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_47af7"]
+_data = {
+"RESET": SubResource("Animation_5ew3m"),
+"ghost_appearing": SubResource("Animation_md5ef"),
+"ghost_desappearing": SubResource("Animation_7a0e6")
+}
+
+[node name="TrueGhost" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_85p8b")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
+show_behind_parent = true
+z_index = 1
+position = Vector2(0, 6)
+scale = Vector2(0.75, 0.6)
+texture = ExtResource("1_u4lr0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_xa57e")
+offset = Vector2(0, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wipsl")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_rp0au")]
+position = Vector2(0, -4)
+collision_layer = 128
+collision_mask = 257
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_v24rc")
+debug_color = Color(0.974125, 0.51973, 1, 0.42)
+
+[node name="Hitbox" parent="." instance=ExtResource("5_i422c")]
+collision_layer = 64
+collision_mask = 32
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_nm06p")
+
+[node name="Stats" parent="." instance=ExtResource("6_3ocem")]
+max_health = 1000
+
+[node name="playerDetectionZone" parent="." instance=ExtResource("7_c0krs")]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="playerDetectionZone" index="0"]
+shape = SubResource("CircleShape2D_u755e")
+debug_color = Color(0.0832874, 0.108795, 0.113046, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_47af7")
+}
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="body_entered" from="playerDetectionZone" to="." method="_on_player_detection_zone_body_entered"]
+[connection signal="body_exited" from="playerDetectionZone" to="." method="_on_player_detection_zone_body_exited"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
+[editable path="playerDetectionZone"]

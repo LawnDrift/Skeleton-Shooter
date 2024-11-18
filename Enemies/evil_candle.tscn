@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bm7hw6b2x3nhg"]
+
+[ext_resource type="Script" path="res://Enemies/evil_candle.gd" id="1_4wwby"]
+[ext_resource type="Texture2D" uid="uid://7fjajgqun3k5" path="res://Shadows/MediumShadow.png" id="1_dsv5u"]
+[ext_resource type="Texture2D" uid="uid://dufbuhybxdayf" path="res://Enemies/evilCandle.png" id="1_wqnru"]
+[ext_resource type="Texture2D" uid="uid://c0kvfl0heeh5r" path="res://Effects/light2.png" id="2_lmlpb"]
+[ext_resource type="PackedScene" uid="uid://cfuel55wr8154" path="res://Hurtboxes and Hitboxes/hitbox.tscn" id="3_qkxmu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k5yv4"]
+radius = 3.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8yws"]
+radius = 21.0
+
+[node name="EvilCandle" type="CharacterBody2D"]
+script = ExtResource("1_4wwby")
+
+[node name="MediumShadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 3)
+scale = Vector2(0.875, 0.8)
+texture = ExtResource("1_dsv5u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_wqnru")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.959125, 0.309281, 1)
+texture = ExtResource("2_lmlpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 4.71239
+shape = SubResource("CapsuleShape2D_k5yv4")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Hitbox" parent="." groups=["flame"] instance=ExtResource("3_qkxmu")]
+collision_layer = 64
+collision_mask = 32
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_a8yws")
+debug_color = Color(0.767832, 0.0594041, 0.819067, 0.42)
+
+[editable path="Hitbox"]

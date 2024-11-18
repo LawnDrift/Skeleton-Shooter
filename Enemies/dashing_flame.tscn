@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://0mj5fldyxkp6"]
+
+[ext_resource type="Texture2D" uid="uid://cfd80r0kwx07n" path="res://Effects/flameEffect.png" id="1_2vpd1"]
+[ext_resource type="Script" path="res://Enemies/dashing_flame.gd" id="1_ydlli"]
+[ext_resource type="PackedScene" uid="uid://cfuel55wr8154" path="res://Hurtboxes and Hitboxes/hitbox.tscn" id="2_pehb1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_458x1"]
+atlas = ExtResource("1_2vpd1")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfapu"]
+atlas = ExtResource("1_2vpd1")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0alf8"]
+atlas = ExtResource("1_2vpd1")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81ou0"]
+atlas = ExtResource("1_2vpd1")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwedg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_458x1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfapu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0alf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81ou0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k8j6f"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tiubk"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wu6n"]
+radius = 4.12311
+
+[node name="DashingFlame" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ydlli")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_dwedg")
+autoplay = "default"
+frame_progress = 0.768245
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_k8j6f")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_tiubk")
+debug_color = Color(0.7, 0, 0.444254, 0.42)
+
+[node name="Hitbox" parent="." instance=ExtResource("2_pehb1")]
+collision_layer = 64
+collision_mask = 32
+damage = 1
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource("CircleShape2D_2wu6n")
+debug_color = Color(0.110775, 0.7, 0, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.3, 0.3)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

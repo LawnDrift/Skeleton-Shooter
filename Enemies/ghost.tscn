@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://dumpo8smmwp6"]
+
+[ext_resource type="Script" path="res://Enemies/ghost.gd" id="1_jqm3i"]
+[ext_resource type="Texture2D" uid="uid://crqbn5ej6o06y" path="res://Enemies/Ghost.png" id="1_lttb1"]
+[ext_resource type="PackedScene" uid="uid://bifj7t1srbgxt" path="res://Hurtboxes and Hitboxes/hurtbox.tscn" id="2_6efw7"]
+[ext_resource type="Texture2D" uid="uid://7fjajgqun3k5" path="res://Shadows/MediumShadow.png" id="2_wme1v"]
+[ext_resource type="PackedScene" uid="uid://ci7fns8317kod" path="res://stats.tscn" id="4_88q1g"]
+[ext_resource type="PackedScene" uid="uid://cfuel55wr8154" path="res://Hurtboxes and Hitboxes/hitbox.tscn" id="5_wc7nd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_78jrb"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6q6lv"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kg3t2"]
+radius = 5.0
+
+[node name="Ghost" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_jqm3i")
+MAX_SPEED = 50
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 7)
+texture = ExtResource("2_wme1v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lttb1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_78jrb")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_6efw7")]
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_6q6lv")
+debug_color = Color(0.7, 0, 0.229683, 0.42)
+
+[node name="Stats" parent="." instance=ExtResource("4_88q1g")]
+max_health = 600
+
+[node name="Hitbox" parent="." instance=ExtResource("5_wc7nd")]
+collision_layer = 64
+collision_mask = 32
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_kg3t2")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-9, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(9, 0)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

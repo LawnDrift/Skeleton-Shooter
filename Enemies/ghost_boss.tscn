@@ -1,0 +1,194 @@
+[gd_scene load_steps=19 format=3 uid="uid://bksyev3f8hbyy"]
+
+[ext_resource type="Texture2D" uid="uid://bd2hmyhucg2yl" path="res://Enemies/GhostBoss.png" id="1_2qfbn"]
+[ext_resource type="Script" path="res://Enemies/ghost_boss.gd" id="1_eoxdt"]
+[ext_resource type="PackedScene" uid="uid://bifj7t1srbgxt" path="res://Hurtboxes and Hitboxes/hurtbox.tscn" id="2_htd0s"]
+[ext_resource type="PackedScene" uid="uid://cfuel55wr8154" path="res://Hurtboxes and Hitboxes/hitbox.tscn" id="3_veml5"]
+[ext_resource type="PackedScene" uid="uid://ci7fns8317kod" path="res://stats.tscn" id="4_1y050"]
+[ext_resource type="PackedScene" uid="uid://ch226rdccj0mx" path="res://player_detection_zone.tscn" id="5_4jieb"]
+[ext_resource type="PackedScene" uid="uid://bebjvvox4kc2v" path="res://wander_controller.tscn" id="7_mlwjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vp6sb"]
+size = Vector2(30, 34)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fck3n"]
+radius = 15.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m5wvh"]
+radius = 15.0
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vvhn3"]
+radius = 204.01
+
+[sub_resource type="Animation" id="Animation_0ewkq"]
+resource_name = "appearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.533333, 0.7, 0.833333, 0.9, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.0862745), Color(1, 1, 1, 0.231373), Color(1, 1, 1, 0.352941), Color(1, 1, 1, 0.490196), Color(1, 1, 1, 0.627451), Color(1, 1, 1, 0.756863), Color(1, 1, 1, 0.87451), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ue84e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lvuym"]
+resource_name = "disappearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.3, 0.466667, 0.633333, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.854902), Color(1, 1, 1, 0.670588), Color(1, 1, 1, 0.709804), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.337255), Color(1, 1, 1, 0.192157), Color(1, 1, 1, 0.105882), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxlcf"]
+_data = {
+"RESET": SubResource("Animation_ue84e"),
+"appearing": SubResource("Animation_0ewkq"),
+"disappearing": SubResource("Animation_lvuym")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_4jxdd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -55, -57, 0, 0, 0, 0, -71, -41, 0, 0, 0, 0, -79, -7, 0, 0, 0, 0, -72, 30, 0, 0, 0, 0, -55, 47, 0, 0, 0, 0, -20, 61, 0, 0, 0, 0, 27, 61, 0, 0, 0, 0, 60, 40, 0, 0, 0, 0, 75, 7, 0, 0, 0, 0, 78, -23, 0, 0, 0, 0, 66, -51, 0, 0, 0, 0, 45, -70, 0, 0, 0, 0, 15, -76, 0, 0, 0, 0, -27, -76, 0, 0, 0, 0, -55, -57)
+}
+point_count = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kquj"]
+bg_color = Color(0, 0, 0, 0.741176)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jybrs"]
+bg_color = Color(0.301961, 0.803922, 0.290196, 0.780392)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="GhostBoss" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_eoxdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-2, 0)
+texture = ExtResource("1_2qfbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_vp6sb")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_htd0s")]
+visible = false
+collision_layer = 136
+collision_mask = 273
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_fck3n")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_veml5")]
+visible = false
+collision_layer = 64
+collision_mask = 32
+damage = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CapsuleShape2D_m5wvh")
+debug_color = Color(0.7, 0.640806, 0, 0.42)
+
+[node name="Stats" parent="." instance=ExtResource("4_1y050")]
+max_health = 75000
+
+[node name="playerDetectionZone" parent="." instance=ExtResource("5_4jieb")]
+visible = false
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="playerDetectionZone" index="0"]
+shape = SubResource("CircleShape2D_vvhn3")
+debug_color = Color(0.7, 0, 0.548041, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hxlcf")
+}
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0.503189, 8.32117)
+scale = Vector2(1.00637, 1.10949)
+curve = SubResource("Curve2D_4jxdd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-55, -57)
+rotation = 2.35619
+
+[node name="Path2" type="Path2D" parent="."]
+position = Vector2(0.293006, 4.59854)
+scale = Vector2(0.585987, 0.613139)
+curve = SubResource("Curve2D_4jxdd")
+
+[node name="SecondFollowPath" type="PathFollow2D" parent="Path2"]
+unique_name_in_owner = true
+position = Vector2(-55, -57)
+rotation = 2.35619
+
+[node name="WanderController" parent="." instance=ExtResource("7_mlwjm")]
+
+[node name="SpawnFlameTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="SpawnTrueGhostTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -94.0
+offset_top = -32.0
+offset_right = 94.0
+offset_bottom = -27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1kquj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jybrs")
+max_value = 75000.0
+value = 75000.0
+show_percentage = false
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="timeout" from="SpawnFlameTimer" to="." method="_on_spawn_flame_timer_timeout"]
+[connection signal="timeout" from="SpawnTrueGhostTimer" to="." method="_on_spawn_true_ghost_timer_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
+[editable path="playerDetectionZone"]
