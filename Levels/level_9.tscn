@@ -1,0 +1,414 @@
+[gd_scene load_steps=23 format=4 uid="uid://bb2f5pojtioy6"]
+
+[ext_resource type="Texture2D" uid="uid://btdg42rwhitjt" path="res://World/walls.png" id="1_ajwa0"]
+[ext_resource type="Script" path="res://Levels/level_9.gd" id="1_eu81n"]
+[ext_resource type="PackedScene" uid="uid://gguvth8dwy0r" path="res://Player/skeleton.tscn" id="3_loulm"]
+[ext_resource type="Texture2D" uid="uid://cdedorva34wu7" path="res://Effects/Light.png" id="4_yfkhs"]
+[ext_resource type="PackedScene" uid="uid://b46nsbrxd3oe" path="res://game_over.tscn" id="5_k6brt"]
+[ext_resource type="PackedScene" uid="uid://u0o05i8aypf6" path="res://pause_menu.tscn" id="6_00eul"]
+[ext_resource type="PackedScene" uid="uid://ckuea2t7r0isv" path="res://UI/health_ui.tscn" id="7_s0bm3"]
+[ext_resource type="PackedScene" uid="uid://cstacl4uln26" path="res://World/chest.tscn" id="8_ge0eg"]
+[ext_resource type="PackedScene" uid="uid://dxtbv2rwlomxq" path="res://Enemies/true_ghost.tscn" id="8_o61ci"]
+[ext_resource type="PackedScene" uid="uid://cww6k1j36ccw5" path="res://Enemies/ghost_2.tscn" id="9_ldek1"]
+[ext_resource type="Script" path="res://World/chest2.gd" id="9_uk2bu"]
+[ext_resource type="PackedScene" uid="uid://dumpo8smmwp6" path="res://Enemies/ghost.tscn" id="10_yl0pt"]
+[ext_resource type="Texture2D" uid="uid://dpf10hpg80c58" path="res://Player/BigGhostGun.png" id="11_p45um"]
+[ext_resource type="Script" path="res://World/chest4.gd" id="13_7sguy"]
+[ext_resource type="Script" path="res://World/chest1.gd" id="15_ld8hv"]
+[ext_resource type="Texture2D" uid="uid://v2u3lkfwysf1" path="res://Player/BigGun.png" id="16_oiec2"]
+[ext_resource type="PackedScene" uid="uid://clmsrg4qatjci" path="res://next_level.tscn" id="17_cex4d"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gy57s"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s4cja"]
+texture = ExtResource("1_ajwa0")
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_gy57s")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_gtpl5"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_s4cja")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r081r"]
+radius = 5.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6xyvp"]
+radius = 5.0
+height = 22.0
+
+[node name="Level9" type="Node2D"]
+script = ExtResource("1_eu81n")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -4.0
+offset_top = -53.0
+offset_right = 1286.0
+offset_bottom = 243.0
+color = Color(0.282763, 0.19515, 0.133943, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAD/////AAAAAAAAAAD//wsAAAAAAAAAAAD//wwAAAAAAAAAAAD//w0AAAAAAAAAAAD//w4AAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA4AAAAAAAAAAAABAAsAAAAAAAAAAAABAAwAAAAAAAAAAAABAA0AAAAAAAAAAAABAA4AAAAAAAAAAAACAAsAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAADAA4AAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAAFAA0AAAAAAAAAAAAFAA4AAAAAAAAAAAAGAAsAAAAAAAAAAAAGAAwAAAAAAAAAAAAGAA0AAAAAAAAAAAAGAA4AAAAAAAAAAAAHAAsAAAAAAAAAAAAHAAwAAAAAAAAAAAAHAA0AAAAAAAAAAAAHAA4AAAAAAAAAAAAIAAsAAAAAAAAAAAAIAAwAAAAAAAAAAAAIAA0AAAAAAAAAAAAIAA4AAAAAAAAAAAAJAAsAAAAAAAAAAAAJAAwAAAAAAAAAAAAJAA0AAAAAAAAAAAAJAA4AAAAAAAAAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAAAAAAKAA0AAAAAAAAAAAAKAA4AAAAAAAAAAAALAAsAAAAAAAAAAAALAAwAAAAAAAAAAAALAA0AAAAAAAAAAAALAA4AAAAAAAAAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAAMAA4AAAAAAAAAAAANAAsAAAAAAAAAAAANAAwAAAAAAAAAAAANAA0AAAAAAAAAAAANAA4AAAAAAAAAAAAOAAsAAAAAAAAAAAAOAAwAAAAAAAAAAAAOAA0AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAAsAAAAAAAAAAAAQAAwAAAAAAAAAAAAQAA0AAAAAAAAAAAAQAA4AAAAAAAAAAAARAAsAAAAAAAAAAAARAAwAAAAAAAAAAAARAA0AAAAAAAAAAAARAA4AAAAAAAAAAAASAAsAAAAAAAAAAAASAAwAAAAAAAAAAAASAA0AAAAAAAAAAAASAA4AAAAAAAAAAAATAAsAAAAAAAAAAAATAAwAAAAAAAAAAAATAA0AAAAAAAAAAAATAA4AAAAAAAAAAAD///z/AAAAAAAAAAD///3/AAAAAAAAAAD///7/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAACAPz/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAAEAPz/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAGAPz/AAAAAAAAAAAGAP3/AAAAAAAAAAAGAP7/AAAAAAAAAAAGAP//AAAAAAAAAAAHAPz/AAAAAAAAAAAHAP3/AAAAAAAAAAAHAP7/AAAAAAAAAAAHAP//AAAAAAAAAAAIAPz/AAAAAAAAAAAIAP3/AAAAAAAAAAAIAP7/AAAAAAAAAAAIAP//AAAAAAAAAAAJAPz/AAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAJAP//AAAAAAAAAAAKAPz/AAAAAAAAAAAKAP3/AAAAAAAAAAAKAP7/AAAAAAAAAAAKAP//AAAAAAAAAAALAPz/AAAAAAAAAAALAP3/AAAAAAAAAAALAP7/AAAAAAAAAAALAP//AAAAAAAAAAAMAPz/AAAAAAAAAAAMAP3/AAAAAAAAAAAMAP7/AAAAAAAAAAAMAP//AAAAAAAAAAANAPz/AAAAAAAAAAANAP3/AAAAAAAAAAANAP7/AAAAAAAAAAANAP//AAAAAAAAAAAOAPz/AAAAAAAAAAAOAP3/AAAAAAAAAAAOAP7/AAAAAAAAAAAOAP//AAAAAAAAAAAPAPz/AAAAAAAAAAAPAP3/AAAAAAAAAAAPAP7/AAAAAAAAAAAPAP//AAAAAAAAAAAQAPz/AAAAAAAAAAAQAP3/AAAAAAAAAAAQAP7/AAAAAAAAAAAQAP//AAAAAAAAAAARAPz/AAAAAAAAAAARAP3/AAAAAAAAAAARAP7/AAAAAAAAAAARAP//AAAAAAAAAAASAPz/AAAAAAAAAAASAP3/AAAAAAAAAAASAP7/AAAAAAAAAAASAP//AAAAAAAAAAATAPz/AAAAAAAAAAATAP3/AAAAAAAAAAATAP7/AAAAAAAAAAATAP//AAAAAAAAAAAUAPz/AAAAAAAAAAAUAP3/AAAAAAAAAAAUAP7/AAAAAAAAAAAUAP//AAAAAAAAAAAVAPz/AAAAAAAAAAAVAP3/AAAAAAAAAAAVAP7/AAAAAAAAAAAVAP//AAAAAAAAAAAWAPz/AAAAAAAAAAAWAP3/AAAAAAAAAAAWAP7/AAAAAAAAAAAWAP//AAAAAAAAAAAXAPz/AAAAAAAAAAAXAP3/AAAAAAAAAAAXAP7/AAAAAAAAAAAXAP//AAAAAAAAAAAYAPz/AAAAAAAAAAAYAP3/AAAAAAAAAAAYAP7/AAAAAAAAAAAYAP//AAAAAAAAAAAZAPz/AAAAAAAAAAAZAP3/AAAAAAAAAAAZAP7/AAAAAAAAAAAZAP//AAAAAAAAAAAaAPz/AAAAAAAAAAAaAP3/AAAAAAAAAAAaAP7/AAAAAAAAAAAaAP//AAAAAAAAAAAbAPz/AAAAAAAAAAAbAP3/AAAAAAAAAAAbAP7/AAAAAAAAAAAbAP//AAAAAAAAAAAcAPz/AAAAAAAAAAAcAP3/AAAAAAAAAAAcAP7/AAAAAAAAAAAcAP//AAAAAAAAAAAdAPz/AAAAAAAAAAAdAP3/AAAAAAAAAAAdAP7/AAAAAAAAAAAdAP//AAAAAAAAAAAeAPz/AAAAAAAAAAAeAP3/AAAAAAAAAAAeAP7/AAAAAAAAAAAeAP//AAAAAAAAAAAfAPz/AAAAAAAAAAAfAP3/AAAAAAAAAAAfAP7/AAAAAAAAAAAfAP//AAAAAAAAAAAgAPz/AAAAAAAAAAAgAP3/AAAAAAAAAAAgAP7/AAAAAAAAAAAgAP//AAAAAAAAAAAhAPz/AAAAAAAAAAAhAP3/AAAAAAAAAAAhAP7/AAAAAAAAAAAhAP//AAAAAAAAAAAiAPz/AAAAAAAAAAAiAP3/AAAAAAAAAAAiAP7/AAAAAAAAAAAiAP//AAAAAAAAAAAjAPz/AAAAAAAAAAAjAP3/AAAAAAAAAAAjAP7/AAAAAAAAAAAjAP//AAAAAAAAAAAkAPz/AAAAAAAAAAAkAP3/AAAAAAAAAAAkAP7/AAAAAAAAAAAkAP//AAAAAAAAAAAlAPz/AAAAAAAAAAAlAP3/AAAAAAAAAAAlAP7/AAAAAAAAAAAlAP//AAAAAAAAAAAmAPz/AAAAAAAAAAAmAP3/AAAAAAAAAAAmAP7/AAAAAAAAAAAmAP//AAAAAAAAAAAnAPz/AAAAAAAAAAAnAP3/AAAAAAAAAAAnAP7/AAAAAAAAAAAnAP//AAAAAAAAAAAoAPz/AAAAAAAAAAAoAP3/AAAAAAAAAAAoAP7/AAAAAAAAAAAoAP//AAAAAAAAAAApAPz/AAAAAAAAAAApAP3/AAAAAAAAAAApAP7/AAAAAAAAAAApAP//AAAAAAAAAAAqAPz/AAAAAAAAAAAqAP3/AAAAAAAAAAAqAP7/AAAAAAAAAAAqAP//AAAAAAAAAAArAPz/AAAAAAAAAAArAP3/AAAAAAAAAAArAP7/AAAAAAAAAAArAP//AAAAAAAAAAAsAPz/AAAAAAAAAAAsAP3/AAAAAAAAAAAsAP7/AAAAAAAAAAAsAP//AAAAAAAAAAAtAPz/AAAAAAAAAAAtAP3/AAAAAAAAAAAtAP7/AAAAAAAAAAAtAP//AAAAAAAAAAAuAPz/AAAAAAAAAAAuAP3/AAAAAAAAAAAuAP7/AAAAAAAAAAAuAP//AAAAAAAAAAAvAPz/AAAAAAAAAAAvAP3/AAAAAAAAAAAvAP7/AAAAAAAAAAAvAP//AAAAAAAAAAAwAPz/AAAAAAAAAAAwAP3/AAAAAAAAAAAwAP7/AAAAAAAAAAAwAP//AAAAAAAAAAAxAPz/AAAAAAAAAAAxAP3/AAAAAAAAAAAxAP7/AAAAAAAAAAAxAP//AAAAAAAAAAAUAAsAAAAAAAAAAAAUAAwAAAAAAAAAAAAUAA0AAAAAAAAAAAAUAA4AAAAAAAAAAAAVAAsAAAAAAAAAAAAVAAwAAAAAAAAAAAAVAA0AAAAAAAAAAAAVAA4AAAAAAAAAAAAWAAsAAAAAAAAAAAAWAAwAAAAAAAAAAAAWAA0AAAAAAAAAAAAWAA4AAAAAAAAAAAAXAAsAAAAAAAAAAAAXAAwAAAAAAAAAAAAXAA0AAAAAAAAAAAAXAA4AAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAZAAsAAAAAAAAAAAAZAAwAAAAAAAAAAAAZAA0AAAAAAAAAAAAZAA4AAAAAAAAAAAAaAAsAAAAAAAAAAAAaAAwAAAAAAAAAAAAaAA0AAAAAAAAAAAAaAA4AAAAAAAAAAAAbAAsAAAAAAAAAAAAbAAwAAAAAAAAAAAAbAA0AAAAAAAAAAAAbAA4AAAAAAAAAAAAcAAsAAAAAAAAAAAAcAAwAAAAAAAAAAAAcAA0AAAAAAAAAAAAcAA4AAAAAAAAAAAAdAAsAAAAAAAAAAAAdAAwAAAAAAAAAAAAdAA0AAAAAAAAAAAAdAA4AAAAAAAAAAAAeAAsAAAAAAAAAAAAeAAwAAAAAAAAAAAAeAA0AAAAAAAAAAAAeAA4AAAAAAAAAAAAfAAsAAAAAAAAAAAAfAAwAAAAAAAAAAAAfAA0AAAAAAAAAAAAfAA4AAAAAAAAAAAAgAAsAAAAAAAAAAAAgAAwAAAAAAAAAAAAgAA0AAAAAAAAAAAAgAA4AAAAAAAAAAAAhAAsAAAAAAAAAAAAhAAwAAAAAAAAAAAAhAA0AAAAAAAAAAAAhAA4AAAAAAAAAAAAiAAsAAAAAAAAAAAAiAAwAAAAAAAAAAAAiAA0AAAAAAAAAAAAiAA4AAAAAAAAAAAAjAAsAAAAAAAAAAAAjAAwAAAAAAAAAAAAjAA0AAAAAAAAAAAAjAA4AAAAAAAAAAAAkAAsAAAAAAAAAAAAkAAwAAAAAAAAAAAAkAA0AAAAAAAAAAAAkAA4AAAAAAAAAAAAlAAsAAAAAAAAAAAAlAAwAAAAAAAAAAAAlAA0AAAAAAAAAAAAlAA4AAAAAAAAAAAAmAAsAAAAAAAAAAAAmAAwAAAAAAAAAAAAmAA0AAAAAAAAAAAAmAA4AAAAAAAAAAAAnAAsAAAAAAAAAAAAnAAwAAAAAAAAAAAAnAA0AAAAAAAAAAAAnAA4AAAAAAAAAAAAoAAsAAAAAAAAAAAAoAAwAAAAAAAAAAAAoAA0AAAAAAAAAAAAoAA4AAAAAAAAAAAApAAsAAAAAAAAAAAApAAwAAAAAAAAAAAApAA0AAAAAAAAAAAApAA4AAAAAAAAAAAAqAAsAAAAAAAAAAAAqAAwAAAAAAAAAAAAqAA0AAAAAAAAAAAAqAA4AAAAAAAAAAAArAAsAAAAAAAAAAAArAAwAAAAAAAAAAAArAA0AAAAAAAAAAAArAA4AAAAAAAAAAAAsAAsAAAAAAAAAAAAsAAwAAAAAAAAAAAAsAA0AAAAAAAAAAAAsAA4AAAAAAAAAAAAtAAsAAAAAAAAAAAAtAAwAAAAAAAAAAAAtAA0AAAAAAAAAAAAtAA4AAAAAAAAAAAAuAAsAAAAAAAAAAAAuAAwAAAAAAAAAAAAuAA0AAAAAAAAAAAAuAA4AAAAAAAAAAAAvAAsAAAAAAAAAAAAvAAwAAAAAAAAAAAAvAA0AAAAAAAAAAAAvAA4AAAAAAAAAAAAwAAsAAAAAAAAAAAAwAAwAAAAAAAAAAAAwAA0AAAAAAAAAAAAwAA4AAAAAAAAAAAAxAAsAAAAAAAAAAAAxAAwAAAAAAAAAAAAxAA0AAAAAAAAAAAAxAA4AAAAAAAAAAAAWAAQAAAAAAAAAAAAWAAUAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAZAAQAAAAAAAAAAAAZAAUAAAAAAAAAAAAZAAYAAAAAAAAAAAAaAAQAAAAAAAAAAAAaAAUAAAAAAAAAAAAaAAYAAAAAAAAAAAAbAAQAAAAAAAAAAAAbAAUAAAAAAAAAAAAbAAYAAAAAAAAAAAAcAAQAAAAAAAAAAAAcAAUAAAAAAAAAAAAcAAYAAAAAAAAAAAAdAAQAAAAAAAAAAAAdAAUAAAAAAAAAAAAdAAYAAAAAAAAAAAAeAAQAAAAAAAAAAAAeAAUAAAAAAAAAAAAeAAYAAAAAAAAAAAAjAAAAAAAAAAAAAAAjAAEAAAAAAAAAAAAjAAIAAAAAAAAAAAAjAAMAAAAAAAAAAAAjAAQAAAAAAAAAAAAjAAUAAAAAAAAAAAAjAAYAAAAAAAAAAAAjAAcAAAAAAAAAAAAjAAgAAAAAAAAAAAAkAAAAAAAAAAAAAAAkAAEAAAAAAAAAAAAkAAIAAAAAAAAAAAAkAAMAAAAAAAAAAAAkAAQAAAAAAAAAAAAkAAUAAAAAAAAAAAAkAAYAAAAAAAAAAAAkAAcAAAAAAAAAAAAkAAgAAAAAAAAAAAAlAAAAAAAAAAAAAAAlAAEAAAAAAAAAAAAlAAIAAAAAAAAAAAAlAAMAAAAAAAAAAAAlAAQAAAAAAAAAAAAlAAUAAAAAAAAAAAAlAAYAAAAAAAAAAAAlAAcAAAAAAAAAAAAlAAgAAAAAAAAAAAApAAQAAAAAAAAAAAApAAUAAAAAAAAAAAApAAYAAAAAAAAAAAApAAcAAAAAAAAAAAApAAgAAAAAAAAAAAApAAkAAAAAAAAAAAApAAoAAAAAAAAAAAAqAAQAAAAAAAAAAAAqAAUAAAAAAAAAAAAqAAYAAAAAAAAAAAAqAAcAAAAAAAAAAAAqAAgAAAAAAAAAAAAqAAkAAAAAAAAAAAAqAAoAAAAAAAAAAAArAAQAAAAAAAAAAAArAAUAAAAAAAAAAAArAAYAAAAAAAAAAAArAAcAAAAAAAAAAAArAAgAAAAAAAAAAAArAAkAAAAAAAAAAAArAAoAAAAAAAAAAAAvAAIAAAAAAAAAAAAvAAMAAAAAAAAAAAAvAAQAAAAAAAAAAAAwAAIAAAAAAAAAAAAwAAMAAAAAAAAAAAAwAAQAAAAAAAAAAAAxAAIAAAAAAAAAAAAxAAMAAAAAAAAAAAAxAAQAAAAAAAAAAAAyAAIAAAAAAAAAAAAyAAMAAAAAAAAAAAAyAAQAAAAAAAAAAAAzAAIAAAAAAAAAAAAzAAMAAAAAAAAAAAAzAAQAAAAAAAAAAAA0AAIAAAAAAAAAAAA0AAMAAAAAAAAAAAA0AAQAAAAAAAAAAAA1AAIAAAAAAAAAAAA1AAMAAAAAAAAAAAA1AAQAAAAAAAAAAAA2AAIAAAAAAAAAAAA2AAMAAAAAAAAAAAA2AAQAAAAAAAAAAAA3AAIAAAAAAAAAAAA3AAMAAAAAAAAAAAA3AAQAAAAAAAAAAAA4AAIAAAAAAAAAAAA4AAMAAAAAAAAAAAA4AAQAAAAAAAAAAAA5AAIAAAAAAAAAAAA5AAMAAAAAAAAAAAA5AAQAAAAAAAAAAAA2AAgAAAAAAAAAAAA2AAkAAAAAAAAAAAA2AAoAAAAAAAAAAAA2AAsAAAAAAAAAAAA2AAwAAAAAAAAAAAA2AA0AAAAAAAAAAAA2AA4AAAAAAAAAAAA3AAgAAAAAAAAAAAA3AAkAAAAAAAAAAAA3AAoAAAAAAAAAAAA3AAsAAAAAAAAAAAA3AAwAAAAAAAAAAAA3AA0AAAAAAAAAAAA3AA4AAAAAAAAAAAA4AAgAAAAAAAAAAAA4AAkAAAAAAAAAAAA4AAoAAAAAAAAAAAA4AAsAAAAAAAAAAAA4AAwAAAAAAAAAAAA4AA0AAAAAAAAAAAA4AA4AAAAAAAAAAAA5AAgAAAAAAAAAAAA5AAkAAAAAAAAAAAA5AAoAAAAAAAAAAAA5AAsAAAAAAAAAAAA5AAwAAAAAAAAAAAA5AA0AAAAAAAAAAAA5AA4AAAAAAAAAAAAyAA4AAAAAAAAAAAAzAA4AAAAAAAAAAAA0AA4AAAAAAAAAAAA1AA4AAAAAAAAAAAA6AA0AAAAAAAAAAAA6AA4AAAAAAAAAAAA7AA0AAAAAAAAAAAA7AA4AAAAAAAAAAAA8AA0AAAAAAAAAAAA8AA4AAAAAAAAAAAA9AA0AAAAAAAAAAAA9AA4AAAAAAAAAAAA+AA0AAAAAAAAAAAA+AA4AAAAAAAAAAAA/AA0AAAAAAAAAAAA/AA4AAAAAAAAAAABAAA0AAAAAAAAAAABAAA4AAAAAAAAAAABBAA0AAAAAAAAAAABBAA4AAAAAAAAAAABCAA0AAAAAAAAAAABCAA4AAAAAAAAAAABDAA0AAAAAAAAAAABDAA4AAAAAAAAAAABEAA0AAAAAAAAAAABEAA4AAAAAAAAAAABFAA0AAAAAAAAAAABFAA4AAAAAAAAAAABGAA0AAAAAAAAAAABGAA4AAAAAAAAAAABHAA0AAAAAAAAAAABHAA4AAAAAAAAAAABIAA0AAAAAAAAAAABIAA4AAAAAAAAAAABJAA0AAAAAAAAAAABJAA4AAAAAAAAAAABKAA0AAAAAAAAAAABKAA4AAAAAAAAAAABLAA0AAAAAAAAAAABLAA4AAAAAAAAAAABMAA0AAAAAAAAAAABMAA4AAAAAAAAAAABNAA0AAAAAAAAAAABNAA4AAAAAAAAAAABOAA0AAAAAAAAAAABOAA4AAAAAAAAAAABPAA0AAAAAAAAAAABPAA4AAAAAAAAAAABQAA0AAAAAAAAAAABQAA4AAAAAAAAAAAAyAPz/AAAAAAAAAAAyAP3/AAAAAAAAAAAyAP7/AAAAAAAAAAAyAP//AAAAAAAAAAAzAPz/AAAAAAAAAAAzAP3/AAAAAAAAAAAzAP7/AAAAAAAAAAAzAP//AAAAAAAAAAA0APz/AAAAAAAAAAA0AP3/AAAAAAAAAAA0AP7/AAAAAAAAAAA0AP//AAAAAAAAAAA1APz/AAAAAAAAAAA1AP3/AAAAAAAAAAA1AP7/AAAAAAAAAAA1AP//AAAAAAAAAAA2APz/AAAAAAAAAAA2AP3/AAAAAAAAAAA2AP7/AAAAAAAAAAA2AP//AAAAAAAAAAA3APz/AAAAAAAAAAA3AP3/AAAAAAAAAAA3AP7/AAAAAAAAAAA3AP//AAAAAAAAAAA4APz/AAAAAAAAAAA4AP3/AAAAAAAAAAA4AP7/AAAAAAAAAAA4AP//AAAAAAAAAAA5APz/AAAAAAAAAAA5AP3/AAAAAAAAAAA5AP7/AAAAAAAAAAA5AP//AAAAAAAAAAA+AAAAAAAAAAAAAAA+AAEAAAAAAAAAAAA+AAIAAAAAAAAAAAA+AAMAAAAAAAAAAAA/AAAAAAAAAAAAAAA/AAEAAAAAAAAAAAA/AAIAAAAAAAAAAAA/AAMAAAAAAAAAAABAAAAAAAAAAAAAAABAAAEAAAAAAAAAAABAAAIAAAAAAAAAAABAAAMAAAAAAAAAAABBAAAAAAAAAAAAAABBAAEAAAAAAAAAAABBAAIAAAAAAAAAAABBAAMAAAAAAAAAAAA6APz/AAAAAAAAAAA7APz/AAAAAAAAAAA8APz/AAAAAAAAAAA9APz/AAAAAAAAAAA+APz/AAAAAAAAAAA/APz/AAAAAAAAAABAAPz/AAAAAAAAAABBAPz/AAAAAAAAAABCAPz/AAAAAAAAAABDAPz/AAAAAAAAAABEAPz/AAAAAAAAAABFAPz/AAAAAAAAAABGAPz/AAAAAAAAAABHAPz/AAAAAAAAAABIAPz/AAAAAAAAAABJAPz/AAAAAAAAAABKAPz/AAAAAAAAAABLAPz/AAAAAAAAAABMAPz/AAAAAAAAAABNAPz/AAAAAAAAAABOAPz/AAAAAAAAAABPAPz/AAAAAAAAAABQAPz/AAAAAAAAAABQAP3/AAAAAAAAAABQAP7/AAAAAAAAAABQAP//AAAAAAAAAABQAAAAAAAAAAAAAABQAAEAAAAAAAAAAABQAAIAAAAAAAAAAABQAAMAAAAAAAAAAABQAAQAAAAAAAAAAABQAAUAAAAAAAAAAABQAAYAAAAAAAAAAABQAAcAAAAAAAAAAABQAAgAAAAAAAAAAABQAAkAAAAAAAAAAABQAAoAAAAAAAAAAABQAAsAAAAAAAAAAABQAAwAAAAAAAAAAABRAPz/AAAAAAAAAABRAP3/AAAAAAAAAABRAP7/AAAAAAAAAABRAP//AAAAAAAAAABRAAAAAAAAAAAAAABRAAEAAAAAAAAAAABRAAIAAAAAAAAAAABRAAMAAAAAAAAAAABRAAQAAAAAAAAAAABRAAUAAAAAAAAAAABRAAYAAAAAAAAAAABRAAcAAAAAAAAAAABRAAgAAAAAAAAAAABRAAkAAAAAAAAAAABRAAoAAAAAAAAAAABRAAsAAAAAAAAAAABRAAwAAAAAAAAAAABRAA0AAAAAAAAAAABRAA4AAAAAAAAAAABSAPz/AAAAAAAAAABSAP3/AAAAAAAAAABSAP7/AAAAAAAAAABSAP//AAAAAAAAAABSAAAAAAAAAAAAAABSAAEAAAAAAAAAAABSAAIAAAAAAAAAAABSAAMAAAAAAAAAAABSAAQAAAAAAAAAAABSAAUAAAAAAAAAAABSAAYAAAAAAAAAAABSAAcAAAAAAAAAAABSAAgAAAAAAAAAAABSAAkAAAAAAAAAAABSAAoAAAAAAAAAAABSAAsAAAAAAAAAAABSAAwAAAAAAAAAAABSAA0AAAAAAAAAAABSAA4AAAAAAAAAAABTAPz/AAAAAAAAAABTAP3/AAAAAAAAAABTAP7/AAAAAAAAAABTAP//AAAAAAAAAABTAAAAAAAAAAAAAABTAAEAAAAAAAAAAABTAAIAAAAAAAAAAABTAAMAAAAAAAAAAABTAAQAAAAAAAAAAABTAAUAAAAAAAAAAABTAAYAAAAAAAAAAABTAAcAAAAAAAAAAABTAAgAAAAAAAAAAABTAAkAAAAAAAAAAABTAAoAAAAAAAAAAABTAAsAAAAAAAAAAABTAAwAAAAAAAAAAABTAA0AAAAAAAAAAABTAA4AAAAAAAAAAABUAPz/AAAAAAAAAABUAP3/AAAAAAAAAABUAP7/AAAAAAAAAABUAP//AAAAAAAAAABUAAAAAAAAAAAAAABUAAEAAAAAAAAAAABUAAIAAAAAAAAAAABUAAMAAAAAAAAAAABUAAQAAAAAAAAAAABUAAUAAAAAAAAAAABUAAYAAAAAAAAAAABUAAcAAAAAAAAAAABUAAgAAAAAAAAAAABUAAkAAAAAAAAAAABUAAoAAAAAAAAAAABUAAsAAAAAAAAAAABUAAwAAAAAAAAAAABUAA0AAAAAAAAAAABUAA4AAAAAAAAAAABVAPz/AAAAAAAAAABVAP3/AAAAAAAAAABVAP7/AAAAAAAAAABVAP//AAAAAAAAAABVAAAAAAAAAAAAAABVAAEAAAAAAAAAAABVAAIAAAAAAAAAAABVAAMAAAAAAAAAAABVAAQAAAAAAAAAAABVAAUAAAAAAAAAAABVAAYAAAAAAAAAAABVAAcAAAAAAAAAAABVAAgAAAAAAAAAAABVAAkAAAAAAAAAAABVAAoAAAAAAAAAAABVAAsAAAAAAAAAAABVAAwAAAAAAAAAAABVAA0AAAAAAAAAAABVAA4AAAAAAAAAAABEAAcAAAAAAAAAAABEAAgAAAAAAAAAAABEAAkAAAAAAAAAAABFAAcAAAAAAAAAAABFAAgAAAAAAAAAAABFAAkAAAAAAAAAAABGAAcAAAAAAAAAAABGAAgAAAAAAAAAAABGAAkAAAAAAAAAAABHAAcAAAAAAAAAAABHAAgAAAAAAAAAAABHAAkAAAAAAAAAAABIAAcAAAAAAAAAAABIAAgAAAAAAAAAAABIAAkAAAAAAAAAAABJAAcAAAAAAAAAAABJAAgAAAAAAAAAAABJAAkAAAAAAAAAAABHAP3/AAAAAAAAAABHAP7/AAAAAAAAAABHAP//AAAAAAAAAABHAAAAAAAAAAAAAABHAAEAAAAAAAAAAABIAP3/AAAAAAAAAABIAP7/AAAAAAAAAABIAP//AAAAAAAAAABIAAAAAAAAAAAAAABIAAEAAAAAAAAAAABLAAMAAAAAAAAAAABLAAQAAAAAAAAAAABMAAMAAAAAAAAAAABMAAQAAAAAAAAAAABNAAMAAAAAAAAAAABNAAQAAAAAAAAAAABOAAMAAAAAAAAAAABOAAQAAAAAAAAAAABPAAMAAAAAAAAAAABPAAQAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAARAAIAAAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_gtpl5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(48, 91)
+limit_left = -5
+limit_top = -60
+limit_right = 1300
+limit_bottom = 235
+limit_smoothed = true
+
+[node name="Skeleton" parent="." instance=ExtResource("3_loulm")]
+position = Vector2(48, 91)
+
+[node name="PointLight2D" type="PointLight2D" parent="Skeleton"]
+position = Vector2(-1, 3.5)
+scale = Vector2(1, 1.01172)
+color = Color(1, 0.806636, 0.611801, 1)
+energy = 0.46
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.6
+texture = ExtResource("4_yfkhs")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="GameOver" parent="." instance=ExtResource("5_k6brt")]
+visible = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("6_00eul")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("7_s0bm3")]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="TrueGhosts" type="Node2D" parent="Enemies"]
+
+[node name="TrueGhost" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(357, 147)
+
+[node name="TrueGhost2" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(342, 129)
+
+[node name="TrueGhost3" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(341, 158)
+
+[node name="TrueGhost4" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(340, 27)
+
+[node name="TrueGhost5" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(329, 46)
+
+[node name="TrueGhost6" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(325, 13)
+
+[node name="TrueGhost7" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(311, 81)
+
+[node name="TrueGhost8" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(332, 68)
+
+[node name="TrueGhost9" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(334, 96)
+
+[node name="TrueGhost10" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(528, 87)
+
+[node name="TrueGhost11" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(527, 24)
+
+[node name="TrueGhost12" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(528, 146)
+
+[node name="TrueGhost13" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(898, 103)
+
+[node name="TrueGhost14" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(963, -24)
+
+[node name="TrueGhost15" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(956, 182)
+
+[node name="TrueGhost16" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(991, 146)
+
+[node name="TrueGhost17" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(956, 114)
+
+[node name="TrueGhost18" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(978, 55)
+
+[node name="TrueGhost19" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(1028, -11)
+
+[node name="TrueGhost20" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(1099, -33)
+
+[node name="TrueGhost21" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(1086, 195)
+
+[node name="TrueGhost22" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(1098, 177)
+
+[node name="TrueGhost23" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(1122, 194)
+
+[node name="TrueGhost24" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(1152, 175)
+
+[node name="TrueGhost25" parent="Enemies/TrueGhosts" instance=ExtResource("8_o61ci")]
+position = Vector2(1189, 194)
+
+[node name="Ghosts" type="Node2D" parent="Enemies"]
+
+[node name="Ghost2" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(372, 53)
+
+[node name="Ghost3" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(373, 32)
+
+[node name="Ghost4" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(409, 10)
+
+[node name="Ghost5" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(409, 29)
+
+[node name="Ghost6" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(445, 52)
+
+[node name="Ghost7" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(445, 30)
+
+[node name="Ghost8" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(485, 9)
+
+[node name="Ghost9" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(485, 27)
+
+[node name="Ghost10" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(378, 162)
+
+[node name="Ghost11" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(378, 141)
+
+[node name="Ghost12" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(405, 121)
+
+[node name="Ghost13" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(405, 140)
+
+[node name="Ghost14" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(439, 163)
+
+[node name="Ghost15" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(439, 143)
+
+[node name="Ghost16" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(475, 119)
+
+[node name="Ghost17" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(475, 135)
+
+[node name="Ghost" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(617, 70)
+
+[node name="Ghost18" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(647, 100)
+
+[node name="Ghost19" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(618, 130)
+
+[node name="Ghost20" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(771, 162)
+
+[node name="Ghost21" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(771, 142)
+
+[node name="Ghost22" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(771, 121)
+
+[node name="Ghost23" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(770, 100)
+
+[node name="Ghost24" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(713, 162)
+
+[node name="Ghost25" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(679, 8)
+
+[node name="Ghost26" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(679, 25)
+
+[node name="Ghost27" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(938, 135)
+
+[node name="Ghost28" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(960, 135)
+
+[node name="Ghost29" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(979, 135)
+
+[node name="Ghost30" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(1076, 152)
+
+[node name="Ghost31" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(1054, 152)
+
+[node name="Ghost32" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(1031, 153)
+
+[node name="Ghost33" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(1017, 197)
+
+[node name="Ghost34" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(1017, 172)
+
+[node name="Ghost35" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(1042, 76)
+
+[node name="Ghost36" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(1043, 96)
+
+[node name="Ghost37" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(1114, 169)
+
+[node name="Ghost38" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(1165, 196)
+
+[node name="Ghost39" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(1194, 136)
+
+[node name="Ghost40" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(1215, 135)
+
+[node name="Ghost41" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(1237, 136)
+
+[node name="Ghost42" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(937, -40)
+
+[node name="Ghost43" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(1124, -12)
+
+[node name="Ghost44" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(1028, -40)
+
+[node name="Ghost45" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(938, 196)
+
+[node name="Ghost46" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(977, -38)
+
+[node name="Ghost47" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(815, 212)
+
+[node name="Ghost48" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(815, 184)
+
+[node name="Ghost49" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(815, 154)
+
+[node name="Ghost50" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(845, 90)
+
+[node name="Ghost51" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(845, 112)
+
+[node name="Ghost52" parent="Enemies/Ghosts" instance=ExtResource("9_ldek1")]
+position = Vector2(846, 136)
+
+[node name="Ghost53" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(614, 6)
+
+[node name="Ghost54" parent="Enemies/Ghosts" instance=ExtResource("10_yl0pt")]
+position = Vector2(984, 22)
+
+[node name="HealthChests" type="Node2D" parent="."]
+
+[node name="Chest" parent="HealthChests" instance=ExtResource("8_ge0eg")]
+position = Vector2(1123, 68)
+script = ExtResource("9_uk2bu")
+
+[node name="Chest2" parent="HealthChests" instance=ExtResource("8_ge0eg")]
+position = Vector2(1143, 68)
+script = ExtResource("9_uk2bu")
+
+[node name="Chest3" parent="HealthChests" instance=ExtResource("8_ge0eg")]
+position = Vector2(1123, 80)
+script = ExtResource("9_uk2bu")
+
+[node name="Chest4" parent="HealthChests" instance=ExtResource("8_ge0eg")]
+position = Vector2(1143, 80)
+script = ExtResource("9_uk2bu")
+
+[node name="GunChests" type="Node2D" parent="."]
+
+[node name="Chest" parent="GunChests" instance=ExtResource("8_ge0eg")]
+position = Vector2(180, 6)
+script = ExtResource("13_7sguy")
+
+[node name="BigGhostGun" type="Sprite2D" parent="GunChests/Chest"]
+position = Vector2(-1, 12)
+texture = ExtResource("11_p45um")
+
+[node name="item_zone" type="Area2D" parent="GunChests/Chest/BigGhostGun"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GunChests/Chest/BigGhostGun/item_zone"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_r081r")
+debug_color = Color(0.7, 0, 0.545753, 0.42)
+
+[node name="Chest2" parent="GunChests" instance=ExtResource("8_ge0eg")]
+position = Vector2(181, 170)
+script = ExtResource("15_ld8hv")
+
+[node name="bigGun" type="Sprite2D" parent="GunChests/Chest2"]
+position = Vector2(0, -12)
+texture = ExtResource("16_oiec2")
+
+[node name="item_zone" type="Area2D" parent="GunChests/Chest2/bigGun"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GunChests/Chest2/bigGun/item_zone"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6xyvp")
+debug_color = Color(0.7, 0, 0.545753, 0.42)
+
+[node name="NextLevel" parent="." instance=ExtResource("17_cex4d")]
+position = Vector2(1246, -18)
+
+[connection signal="health_depleted" from="Skeleton" to="." method="_on_skeleton_health_depleted"]
+[connection signal="body_entered" from="HealthChests/Chest/ChestZone" to="HealthChests/Chest" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="HealthChests/Chest/ChestZone" to="HealthChests/Chest" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="HealthChests/Chest2/ChestZone" to="HealthChests/Chest2" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="HealthChests/Chest2/ChestZone" to="HealthChests/Chest2" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="HealthChests/Chest3/ChestZone" to="HealthChests/Chest3" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="HealthChests/Chest3/ChestZone" to="HealthChests/Chest3" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="HealthChests/Chest4/ChestZone" to="HealthChests/Chest4" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="HealthChests/Chest4/ChestZone" to="HealthChests/Chest4" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="GunChests/Chest/ChestZone" to="GunChests/Chest" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="GunChests/Chest/ChestZone" to="GunChests/Chest" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="GunChests/Chest/BigGhostGun/item_zone" to="GunChests/Chest" method="_on_item_zone_body_entered"]
+[connection signal="body_entered" from="GunChests/Chest2/ChestZone" to="GunChests/Chest2" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="GunChests/Chest2/ChestZone" to="GunChests/Chest2" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="GunChests/Chest2/bigGun/item_zone" to="GunChests/Chest2" method="_on_item_zone_body_entered"]
+
+[editable path="HealthChests/Chest"]
+[editable path="HealthChests/Chest2"]
+[editable path="HealthChests/Chest3"]
+[editable path="HealthChests/Chest4"]
+[editable path="GunChests/Chest"]
+[editable path="GunChests/Chest2"]

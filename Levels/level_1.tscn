@@ -1,0 +1,196 @@
+[gd_scene load_steps=22 format=4 uid="uid://dpddujoh2vvyf"]
+
+[ext_resource type="Texture2D" uid="uid://btdg42rwhitjt" path="res://World/walls.png" id="1_2140l"]
+[ext_resource type="Script" path="res://Levels/level_1.gd" id="1_fd7uk"]
+[ext_resource type="PackedScene" uid="uid://gguvth8dwy0r" path="res://Player/skeleton.tscn" id="3_vqkor"]
+[ext_resource type="Texture2D" uid="uid://cdedorva34wu7" path="res://Effects/Light.png" id="4_tlir0"]
+[ext_resource type="FontFile" uid="uid://c5fpeg8tfrjfp" path="res://PixelOperator8.ttf" id="5_14h5u"]
+[ext_resource type="Script" path="res://Levels/label.gd" id="6_jgljd"]
+[ext_resource type="PackedScene" uid="uid://ch226rdccj0mx" path="res://player_detection_zone.tscn" id="6_sf2ry"]
+[ext_resource type="PackedScene" uid="uid://cstacl4uln26" path="res://World/chest.tscn" id="7_4fvhn"]
+[ext_resource type="PackedScene" uid="uid://ckuea2t7r0isv" path="res://UI/health_ui.tscn" id="8_4u28c"]
+[ext_resource type="Script" path="res://World/chest2.gd" id="8_5no31"]
+[ext_resource type="Script" path="res://label_3.gd" id="8_ic5uc"]
+[ext_resource type="Script" path="res://label_4.gd" id="9_kybru"]
+[ext_resource type="PackedScene" uid="uid://clmsrg4qatjci" path="res://next_level.tscn" id="10_1bmwy"]
+[ext_resource type="PackedScene" uid="uid://b46nsbrxd3oe" path="res://game_over.tscn" id="15_mpli7"]
+[ext_resource type="PackedScene" uid="uid://cww6k1j36ccw5" path="res://Enemies/ghost_2.tscn" id="15_ui4xn"]
+[ext_resource type="PackedScene" uid="uid://u0o05i8aypf6" path="res://pause_menu.tscn" id="16_0em83"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gy57s"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sxloi"]
+texture = ExtResource("1_2140l")
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_gy57s")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_0jdyd"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_sxloi")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nre1"]
+radius = 67.3647
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klnls"]
+size = Vector2(133, 48)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_fd7uk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -4.0
+offset_right = 343.0
+offset_bottom = 279.0
+color = Color(0.282763, 0.19515, 0.133943, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAAVAAoAAAAAAAAAAAAVAAkAAAAAAAAAAAAVAAgAAAAAAAAAAAAVAAUAAAAAAAAAAAAVAAcAAAAAAAAAAAAVAAYAAAAAAAAAAAAVAAQAAAAAAAAAAAAVAAMAAAAAAAAAAAAVAAIAAAAAAAAAAAAVAAEAAAAAAAAAAAAVAAAAAAAAAAAAAAAVAP//AAAAAAAAAAAUAP//AAAAAAAAAAATAP//AAAAAAAAAAASAP//AAAAAAAAAAARAP//AAAAAAAAAAAQAP//AAAAAAAAAAD/////AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAAFAP//AAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAAIAP//AAAAAAAAAAAJAP//AAAAAAAAAAAPAP//AAAAAAAAAAAOAP//AAAAAAAAAAANAP//AAAAAAAAAAAMAP//AAAAAAAAAAALAP//AAAAAAAAAAAKAP//AAAAAAAAAAD//wsAAAAAAAAAAAAVAAsAAAAAAAAAAAD//wwAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAUAAgAAAAAAAAAAAATAAgAAAAAAAAAAAASAAgAAAAAAAAAAAARAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAPAAgAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAOAAgAAAAAAAAAAAANAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_0jdyd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(33, 20)
+limit_left = -5
+limit_top = -8
+limit_right = 350
+limit_bottom = 200
+limit_smoothed = true
+
+[node name="Skeleton" parent="." instance=ExtResource("3_vqkor")]
+position = Vector2(33, 20)
+
+[node name="PointLight2D" type="PointLight2D" parent="Skeleton"]
+position = Vector2(-1, 3.5)
+scale = Vector2(1, 1.01172)
+color = Color(1, 0.806636, 0.611801, 1)
+energy = 0.46
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.6
+texture = ExtResource("4_tlir0")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Label" type="Label" parent="."]
+z_index = -1
+offset_left = 89.0
+offset_top = 8.0
+offset_right = 194.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.540732, 0.45854, 0.391274, 1)
+theme_override_fonts/font = ExtResource("5_14h5u")
+theme_override_font_sizes/font_size = 8
+text = "shoot by
+ clicking"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+z_index = -1
+offset_left = 227.0
+offset_top = 84.0
+offset_right = 332.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0.540732, 0.45854, 0.391274, 1)
+theme_override_fonts/font = ExtResource("5_14h5u")
+theme_override_font_sizes/font_size = 8
+text = "Enemies hurt"
+horizontal_alignment = 1
+script = ExtResource("6_jgljd")
+
+[node name="playerDetectionZone" parent="Label2" instance=ExtResource("6_sf2ry")]
+position = Vector2(54, 7)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Label2/playerDetectionZone" index="0"]
+visible = false
+position = Vector2(-7, -27)
+shape = SubResource("CircleShape2D_3nre1")
+
+[node name="Label3" type="Label" parent="."]
+z_index = -1
+offset_left = 7.0
+offset_top = 101.0
+offset_right = 112.0
+offset_bottom = 131.0
+theme_override_colors/font_color = Color(0.540732, 0.45854, 0.391274, 1)
+theme_override_fonts/font = ExtResource("5_14h5u")
+theme_override_font_sizes/font_size = 8
+text = "press ENTER 
+to open chests
+and get items"
+horizontal_alignment = 1
+script = ExtResource("8_ic5uc")
+
+[node name="playerDetectionZone" parent="Label3" instance=ExtResource("6_sf2ry")]
+position = Vector2(63, 47)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Label3/playerDetectionZone" index="0"]
+visible = false
+position = Vector2(-7, -27)
+shape = SubResource("CircleShape2D_3nre1")
+
+[node name="Label4" type="Label" parent="."]
+z_index = -1
+offset_left = 169.0
+offset_top = 155.0
+offset_right = 274.0
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(0.540732, 0.45854, 0.391274, 1)
+theme_override_fonts/font = ExtResource("5_14h5u")
+theme_override_font_sizes/font_size = 8
+text = "You finished
+the tutorial!"
+horizontal_alignment = 1
+script = ExtResource("9_kybru")
+
+[node name="playerDetectionZone" parent="Label4" instance=ExtResource("6_sf2ry")]
+position = Vector2(21, 67)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Label4/playerDetectionZone" index="0"]
+visible = false
+position = Vector2(19.5, -54)
+shape = SubResource("RectangleShape2D_klnls")
+
+[node name="Chest" parent="." instance=ExtResource("7_4fvhn")]
+position = Vector2(57, 156)
+script = ExtResource("8_5no31")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("8_4u28c")]
+
+[node name="NextLevel" parent="." instance=ExtResource("10_1bmwy")]
+position = Vector2(311, 172)
+
+[node name="Ghost2" parent="." instance=ExtResource("15_ui4xn")]
+position = Vector2(159, 111)
+MAX_SPEED = 50
+WANDER_SPEED = 50
+
+[node name="GameOver" parent="." instance=ExtResource("15_mpli7")]
+visible = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("16_0em83")]
+
+[connection signal="health_depleted" from="Skeleton" to="." method="_on_skeleton_health_depleted"]
+[connection signal="body_entered" from="Label2/playerDetectionZone" to="Label2" method="_on_player_detection_zone_body_entered"]
+[connection signal="body_entered" from="Label3/playerDetectionZone" to="Label3" method="_on_player_detection_zone_body_entered"]
+[connection signal="body_entered" from="Label4/playerDetectionZone" to="Label4" method="_on_player_detection_zone_body_entered"]
+[connection signal="body_entered" from="Chest/ChestZone" to="Chest" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="Chest/ChestZone" to="Chest" method="_on_chest_zone_body_exited"]
+
+[editable path="Label2/playerDetectionZone"]
+[editable path="Label3/playerDetectionZone"]
+[editable path="Label4/playerDetectionZone"]
+[editable path="Chest"]

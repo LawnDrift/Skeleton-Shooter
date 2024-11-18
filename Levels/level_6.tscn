@@ -1,0 +1,211 @@
+[gd_scene load_steps=20 format=4 uid="uid://cjrprlfitk2nd"]
+
+[ext_resource type="Script" path="res://Levels/level_6.gd" id="1_6syc6"]
+[ext_resource type="Texture2D" uid="uid://btdg42rwhitjt" path="res://World/walls.png" id="2_ke2y0"]
+[ext_resource type="PackedScene" uid="uid://gguvth8dwy0r" path="res://Player/skeleton.tscn" id="3_q24pr"]
+[ext_resource type="PackedScene" uid="uid://ckuea2t7r0isv" path="res://UI/health_ui.tscn" id="5_hv18i"]
+[ext_resource type="PackedScene" uid="uid://dumpo8smmwp6" path="res://Enemies/ghost.tscn" id="6_xi043"]
+[ext_resource type="PackedScene" uid="uid://cstacl4uln26" path="res://World/chest.tscn" id="7_ledhv"]
+[ext_resource type="Script" path="res://World/chest1.gd" id="8_fkd5o"]
+[ext_resource type="PackedScene" uid="uid://cww6k1j36ccw5" path="res://Enemies/ghost_2.tscn" id="9_qas57"]
+[ext_resource type="Texture2D" uid="uid://v2u3lkfwysf1" path="res://Player/BigGun.png" id="9_w23t7"]
+[ext_resource type="PackedScene" uid="uid://b46nsbrxd3oe" path="res://game_over.tscn" id="9_x6som"]
+[ext_resource type="PackedScene" uid="uid://u0o05i8aypf6" path="res://pause_menu.tscn" id="10_pyaeo"]
+[ext_resource type="PackedScene" uid="uid://bm7hw6b2x3nhg" path="res://Enemies/evil_candle.tscn" id="11_lvf8g"]
+[ext_resource type="PackedScene" uid="uid://dxtbv2rwlomxq" path="res://Enemies/true_ghost.tscn" id="14_6pgsv"]
+[ext_resource type="PackedScene" uid="uid://clmsrg4qatjci" path="res://next_level.tscn" id="15_tdtu7"]
+[ext_resource type="Script" path="res://World/chest2.gd" id="16_ofx27"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rq36p"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ht5t"]
+texture = ExtResource("2_ke2y0")
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_rq36p")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_as5gk"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 129
+physics_layer_0/collision_mask = 129
+sources/0 = SubResource("TileSetAtlasSource_5ht5t")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qtyj3"]
+radius = 5.0
+height = 22.0
+
+[node name="Level6" type="Node2D"]
+script = ExtResource("1_6syc6")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="World"]
+offset_right = 1054.0
+offset_bottom = 181.0
+color = Color(0.174144, 0.120285, 0.120285, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="World"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAUAP//AAAAAAAAAAATAP//AAAAAAAAAAASAP//AAAAAAAAAAARAP//AAAAAAAAAAAQAP//AAAAAAAAAAAPAP//AAAAAAAAAAAOAP//AAAAAAAAAAANAP//AAAAAAAAAAAMAP//AAAAAAAAAAALAP//AAAAAAAAAAAKAP//AAAAAAAAAAAJAP//AAAAAAAAAAAIAP//AAAAAAAAAAAHAP//AAAAAAAAAAAGAP//AAAAAAAAAAAFAP//AAAAAAAAAAAEAP//AAAAAAAAAAADAP//AAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAAVAP//AAAAAAAAAAAWAP//AAAAAAAAAAAXAP//AAAAAAAAAAAYAP//AAAAAAAAAAAZAP//AAAAAAAAAAAaAP//AAAAAAAAAAAbAP//AAAAAAAAAAAcAP//AAAAAAAAAAAdAP//AAAAAAAAAAAeAP//AAAAAAAAAAAfAP//AAAAAAAAAAAgAP//AAAAAAAAAAAhAP//AAAAAAAAAAAiAP//AAAAAAAAAAAjAP//AAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAsAAAAAAAAAAAAeAAsAAAAAAAAAAAAfAAsAAAAAAAAAAAAgAAsAAAAAAAAAAAAhAAsAAAAAAAAAAAAiAAsAAAAAAAAAAAAjAAsAAAAAAAAAAAAkAAsAAAAAAAAAAAAlAAsAAAAAAAAAAAAmAAsAAAAAAAAAAAAnAAsAAAAAAAAAAAAoAAsAAAAAAAAAAAApAAsAAAAAAAAAAAAkAP//AAAAAAAAAAAlAP//AAAAAAAAAAAmAP//AAAAAAAAAAAnAP//AAAAAAAAAAAoAP//AAAAAAAAAAApAP//AAAAAAAAAAAqAP//AAAAAAAAAAArAP//AAAAAAAAAAAsAP//AAAAAAAAAAAtAP//AAAAAAAAAAAuAP//AAAAAAAAAAAvAP//AAAAAAAAAAAwAP//AAAAAAAAAAAxAP//AAAAAAAAAAAyAP//AAAAAAAAAAAzAP//AAAAAAAAAAA0AP//AAAAAAAAAAA1AP//AAAAAAAAAAAqAAsAAAAAAAAAAAArAAsAAAAAAAAAAAAsAAsAAAAAAAAAAAAtAAsAAAAAAAAAAAAuAAsAAAAAAAAAAAAvAAsAAAAAAAAAAAAwAAsAAAAAAAAAAAAxAAsAAAAAAAAAAAAyAAsAAAAAAAAAAAAzAAsAAAAAAAAAAAA0AAsAAAAAAAAAAAA1AAsAAAAAAAAAAAA2AAsAAAAAAAAAAAA3AAsAAAAAAAAAAAA4AAsAAAAAAAAAAAA5AAsAAAAAAAAAAAA6AAsAAAAAAAAAAAA7AAsAAAAAAAAAAAA8AAsAAAAAAAAAAAA9AAsAAAAAAAAAAAA+AAsAAAAAAAAAAAA/AAsAAAAAAAAAAABAAAsAAAAAAAAAAABBAAsAAAAAAAAAAABBAAoAAAAAAAAAAABBAAkAAAAAAAAAAABBAAgAAAAAAAAAAABBAAcAAAAAAAAAAABBAAYAAAAAAAAAAABBAAUAAAAAAAAAAABBAAQAAAAAAAAAAABBAAMAAAAAAAAAAABBAAIAAAAAAAAAAABBAAEAAAAAAAAAAABBAAAAAAAAAAAAAABBAP//AAAAAAAAAAA2AP//AAAAAAAAAAA3AP//AAAAAAAAAAA4AP//AAAAAAAAAAA5AP//AAAAAAAAAAA6AP//AAAAAAAAAAA7AP//AAAAAAAAAAA8AP//AAAAAAAAAAA9AP//AAAAAAAAAAA+AP//AAAAAAAAAAA/AP//AAAAAAAAAABAAP//AAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAASAAQAAAAAAAAAAAASAAUAAAAAAAAAAAASAAYAAAAAAAAAAAATAAQAAAAAAAAAAAATAAUAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAQAAAAAAAAAAAAUAAUAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAQAAAAAAAAAAAAVAAUAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAQAAAAAAAAAAAAWAAUAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAAAAAAAAAAcAAQAAAAAAAAAAAAcAAUAAAAAAAAAAAAcAAYAAAAAAAAAAAAdAAQAAAAAAAAAAAAdAAUAAAAAAAAAAAAdAAYAAAAAAAAAAAAeAAQAAAAAAAAAAAAeAAUAAAAAAAAAAAAeAAYAAAAAAAAAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAAAAAAfAAYAAAAAAAAAAAAgAAQAAAAAAAAAAAAgAAUAAAAAAAAAAAAgAAYAAAAAAAAAAAAhAAQAAAAAAAAAAAAhAAUAAAAAAAAAAAAhAAYAAAAAAAAAAAAiAAQAAAAAAAAAAAAiAAUAAAAAAAAAAAAiAAYAAAAAAAAAAAAjAAQAAAAAAAAAAAAjAAUAAAAAAAAAAAAjAAYAAAAAAAAAAAAkAAQAAAAAAAAAAAAkAAUAAAAAAAAAAAAkAAYAAAAAAAAAAAAlAAQAAAAAAAAAAAAlAAUAAAAAAAAAAAAlAAYAAAAAAAAAAAAmAAQAAAAAAAAAAAAmAAUAAAAAAAAAAAAmAAYAAAAAAAAAAAAqAAQAAAAAAAAAAAAqAAUAAAAAAAAAAAAqAAYAAAAAAAAAAAArAAQAAAAAAAAAAAArAAUAAAAAAAAAAAArAAYAAAAAAAAAAAAsAAQAAAAAAAAAAAAsAAUAAAAAAAAAAAAsAAYAAAAAAAAAAAAtAAQAAAAAAAAAAAAtAAUAAAAAAAAAAAAtAAYAAAAAAAAAAAAuAAQAAAAAAAAAAAAuAAUAAAAAAAAAAAAuAAYAAAAAAAAAAAAvAAQAAAAAAAAAAAAvAAUAAAAAAAAAAAAvAAYAAAAAAAAAAAAwAAQAAAAAAAAAAAAwAAUAAAAAAAAAAAAwAAYAAAAAAAAAAAAxAAQAAAAAAAAAAAAxAAUAAAAAAAAAAAAxAAYAAAAAAAAAAAAyAAQAAAAAAAAAAAAyAAUAAAAAAAAAAAAyAAYAAAAAAAAAAAAzAAQAAAAAAAAAAAAzAAUAAAAAAAAAAAAzAAYAAAAAAAAAAAA0AAQAAAAAAAAAAAA0AAUAAAAAAAAAAAA0AAYAAAAAAAAAAAA4AAQAAAAAAAAAAAA4AAUAAAAAAAAAAAA4AAYAAAAAAAAAAAA5AAQAAAAAAAAAAAA5AAUAAAAAAAAAAAA5AAYAAAAAAAAAAAA6AAQAAAAAAAAAAAA6AAUAAAAAAAAAAAA6AAYAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAgAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAZAAMAAAAAAAAAAAAZAAcAAAAAAAAAAAAZAAgAAAAAAAAAAAAaAAMAAAAAAAAAAAAaAAcAAAAAAAAAAAAaAAgAAAAAAAAAAAAbAAMAAAAAAAAAAAAbAAcAAAAAAAAAAAAbAAgAAAAAAAAAAAAcAAMAAAAAAAAAAAAcAAcAAAAAAAAAAAAcAAgAAAAAAAAAAAAlAAMAAAAAAAAAAAAlAAcAAAAAAAAAAAAlAAgAAAAAAAAAAAAmAAMAAAAAAAAAAAAmAAcAAAAAAAAAAAAmAAgAAAAAAAAAAAAnAAMAAAAAAAAAAAAnAAcAAAAAAAAAAAAnAAgAAAAAAAAAAAAoAAMAAAAAAAAAAAAoAAcAAAAAAAAAAAAoAAgAAAAAAAAAAAApAAMAAAAAAAAAAAApAAcAAAAAAAAAAAApAAgAAAAAAAAAAAAqAAMAAAAAAAAAAAAqAAcAAAAAAAAAAAAqAAgAAAAAAAAAAAA0AAMAAAAAAAAAAAA0AAcAAAAAAAAAAAA0AAgAAAAAAAAAAAA1AAMAAAAAAAAAAAA1AAcAAAAAAAAAAAA1AAgAAAAAAAAAAAA2AAMAAAAAAAAAAAA2AAcAAAAAAAAAAAA2AAgAAAAAAAAAAAA3AAMAAAAAAAAAAAA3AAcAAAAAAAAAAAA3AAgAAAAAAAAAAAA4AAMAAAAAAAAAAAA4AAcAAAAAAAAAAAA4AAgAAAAAAAAAAAA5AAMAAAAAAAAAAAA5AAcAAAAAAAAAAAA5AAgAAAAAAAAAAAA7AAQAAAAAAAAAAAA7AAUAAAAAAAAAAAA7AAYAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAdAAMAAAAAAAAAAAAdAAcAAAAAAAAAAAAdAAgAAAAAAAAAAAAXAAIAAAAAAAAAAAAYAAIAAAAAAAAAAAAZAAIAAAAAAAAAAAAaAAIAAAAAAAAAAAAbAAIAAAAAAAAAAAAcAAIAAAAAAAAAAAAdAAIAAAAAAAAAAAAlAAIAAAAAAAAAAAAmAAIAAAAAAAAAAAAnAAIAAAAAAAAAAAAoAAIAAAAAAAAAAAApAAIAAAAAAAAAAAAqAAIAAAAAAAAAAAArAAIAAAAAAAAAAAArAAMAAAAAAAAAAAArAAcAAAAAAAAAAAArAAgAAAAAAAAAAAAzAAIAAAAAAAAAAAAzAAMAAAAAAAAAAAAzAAcAAAAAAAAAAAAzAAgAAAAAAAAAAAA0AAIAAAAAAAAAAAA1AAIAAAAAAAAAAAA2AAIAAAAAAAAAAAA3AAIAAAAAAAAAAAA4AAIAAAAAAAAAAAA5AAIAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_as5gk")
+
+[node name="Skeleton" parent="World" instance=ExtResource("3_q24pr")]
+position = Vector2(33, 20)
+
+[node name="Camera2D" type="Camera2D" parent="World/Skeleton"]
+limit_left = 0
+limit_top = -8
+limit_right = 1045
+limit_bottom = 180
+limit_smoothed = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="World"]
+color = Color(0.466667, 0.317647, 0.317647, 0.858824)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="World"]
+
+[node name="HealthUI" parent="World/CanvasLayer" instance=ExtResource("5_hv18i")]
+
+[node name="Chest" parent="World" instance=ExtResource("7_ledhv")]
+position = Vector2(41, 156)
+script = ExtResource("8_fkd5o")
+
+[node name="bigGun" type="Sprite2D" parent="World/Chest"]
+position = Vector2(7, 10)
+texture = ExtResource("9_w23t7")
+
+[node name="item_zone" type="Area2D" parent="World/Chest/bigGun"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Chest/bigGun/item_zone"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qtyj3")
+debug_color = Color(0.7, 0, 0.545753, 0.42)
+
+[node name="Enemies" type="Node2D" parent="World"]
+
+[node name="Ghost2" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(123, 120)
+
+[node name="Ghost3" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(123, 135)
+
+[node name="Ghost4" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(185, 167)
+
+[node name="Ghost5" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(185, 149)
+
+[node name="Ghost6" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(185, 134)
+
+[node name="Ghost7" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(245, 118)
+
+[node name="Ghost8" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(246, 134)
+
+[node name="Ghost9" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(247, 151)
+
+[node name="Ghost" parent="World/Enemies" instance=ExtResource("6_xi043")]
+position = Vector2(992, 158)
+
+[node name="Ghost16" parent="World/Enemies" instance=ExtResource("6_xi043")]
+position = Vector2(229, 16)
+
+[node name="Ghost17" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(331, 54)
+
+[node name="Ghost18" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(331, 42)
+
+[node name="Ghost19" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(331, 28)
+
+[node name="Ghost20" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(289, 8)
+
+[node name="Ghost21" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(289, 21)
+
+[node name="Ghost22" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(290, 36)
+
+[node name="Ghost23" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(245, 56)
+
+[node name="Ghost24" parent="World/Enemies" instance=ExtResource("9_qas57")]
+position = Vector2(245, 8)
+
+[node name="EvilCandle" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(494, 129)
+
+[node name="EvilCandle5" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(486, 58)
+
+[node name="EvilCandle6" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(585, 58)
+
+[node name="EvilCandle10" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(536, 8)
+
+[node name="EvilCandle7" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(710, 58)
+
+[node name="EvilCandle8" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(810, 58)
+
+[node name="EvilCandle9" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(760, 11)
+
+[node name="EvilCandle2" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(576, 129)
+
+[node name="EvilCandle3" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(721, 129)
+
+[node name="EvilCandle4" parent="World/Enemies" instance=ExtResource("11_lvf8g")]
+position = Vector2(800, 129)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="World"]
+
+[node name="PauseMenu" parent="World/CanvasLayer2" instance=ExtResource("10_pyaeo")]
+metadata/_edit_use_anchors_ = true
+
+[node name="TrueGhost" parent="World" instance=ExtResource("14_6pgsv")]
+position = Vector2(424, 88)
+
+[node name="TrueGhost2" parent="World" instance=ExtResource("14_6pgsv")]
+position = Vector2(649, 89)
+
+[node name="TrueGhost3" parent="World" instance=ExtResource("14_6pgsv")]
+position = Vector2(872, 89)
+
+[node name="NextLevel" parent="." instance=ExtResource("15_tdtu7")]
+position = Vector2(164, 35)
+
+[node name="Chest" parent="." instance=ExtResource("7_ledhv")]
+position = Vector2(947, 130)
+script = ExtResource("16_ofx27")
+
+[node name="Chest2" parent="." instance=ExtResource("7_ledhv")]
+position = Vector2(944, 48)
+script = ExtResource("16_ofx27")
+
+[node name="GameOver" parent="." instance=ExtResource("9_x6som")]
+visible = false
+
+[connection signal="health_depleted" from="World/Skeleton" to="." method="_on_skeleton_health_depleted"]
+[connection signal="body_entered" from="World/Chest/ChestZone" to="World/Chest" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="World/Chest/ChestZone" to="World/Chest" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="World/Chest/bigGun/item_zone" to="World/Chest" method="_on_item_zone_body_entered"]
+[connection signal="body_entered" from="Chest/ChestZone" to="Chest" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="Chest/ChestZone" to="Chest" method="_on_chest_zone_body_exited"]
+[connection signal="body_entered" from="Chest2/ChestZone" to="Chest2" method="_on_chest_zone_body_entered"]
+[connection signal="body_exited" from="Chest2/ChestZone" to="Chest2" method="_on_chest_zone_body_exited"]
+
+[editable path="World/Chest"]
+[editable path="Chest"]
+[editable path="Chest2"]
