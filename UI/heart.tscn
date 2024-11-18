@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0s67mvthuli0"]
+
+[ext_resource type="Script" path="res://UI/heart.gd" id="1_78sid"]
+[ext_resource type="Texture2D" uid="uid://dsd2frcbyuvbq" path="res://UI/HeartUIFull.png" id="1_ugrnf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l842b"]
+radius = 3.94094
+
+[node name="Heart" type="CharacterBody2D"]
+position = Vector2(-1.86667, 1.63636)
+scale = Vector2(0.733333, 0.727273)
+script = ExtResource("1_78sid")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.90909, -2.25)
+scale = Vector2(0.636364, 0.727273)
+texture = ExtResource("1_ugrnf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.54546, -2.25)
+shape = SubResource("CircleShape2D_l842b")
