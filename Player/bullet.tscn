@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://rpv8g0lddj15"]
+
+[ext_resource type="Texture2D" uid="uid://by6r7xwcvqgxa" path="res://Player/Bullet.png" id="1_a6nfe"]
+[ext_resource type="Script" path="res://Player/bullet.gd" id="1_dpfog"]
+[ext_resource type="PackedScene" uid="uid://cfuel55wr8154" path="res://Hurtboxes and Hitboxes/hitbox.tscn" id="3_pryh8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqt31"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_84syp"]
+radius = 2.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_dpfog")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a6nfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_aqt31")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.49012e-07, -0.25)
+scale = Vector2(0.2, 0.175)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_pryh8")]
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_84syp")
+debug_color = Color(0.527155, 0.204183, 0.128371, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+
+[editable path="Hitbox"]

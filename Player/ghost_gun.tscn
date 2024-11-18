@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://jm8x70mkkm5q"]
+
+[ext_resource type="Texture2D" uid="uid://dkxdhmux5113f" path="res://Player/GhostGun.png" id="1_3lcje"]
+[ext_resource type="Script" path="res://Player/ghost_gun.gd" id="2_p5lym"]
+
+[node name="GhostGun" type="Sprite2D"]
+texture = ExtResource("1_3lcje")
+script = ExtResource("2_p5lym")
+
+[node name="BulletPosition" type="Marker2D" parent="."]
+position = Vector2(5, -1)

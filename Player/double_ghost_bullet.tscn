@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://58v08b1qvr3"]
+
+[ext_resource type="Script" path="res://Player/double_ghost_bullet.gd" id="1_kced2"]
+[ext_resource type="PackedScene" uid="uid://bkjp6qu8fm1oo" path="res://Player/ghost_bullet.tscn" id="2_ya8gq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pdypw"]
+radius = 2.0
+height = 8.0
+
+[node name="DoubleGhostBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 129
+script = ExtResource("1_kced2")
+
+[node name="GhostBullet" parent="." instance=ExtResource("2_ya8gq")]
+position = Vector2(0, -2)
+script = null
+
+[node name="GhostBullet2" parent="." instance=ExtResource("2_ya8gq")]
+position = Vector2(0, 2)
+script = null
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pdypw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

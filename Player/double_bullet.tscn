@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://5440s1kane1k"]
+
+[ext_resource type="PackedScene" uid="uid://rpv8g0lddj15" path="res://Player/bullet.tscn" id="1_ewi6a"]
+[ext_resource type="Script" path="res://Player/double_bullet.gd" id="1_o8116"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6xx1"]
+radius = 2.0
+height = 10.0
+
+[node name="DoubleBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_o8116")
+
+[node name="Bullet" parent="." instance=ExtResource("1_ewi6a")]
+position = Vector2(0, -2)
+script = null
+
+[node name="Bullet2" parent="." instance=ExtResource("1_ewi6a")]
+position = Vector2(0, 2)
+script = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_e6xx1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbxba5uxw4yoh"]
+
+[ext_resource type="Texture2D" uid="uid://dpf10hpg80c58" path="res://Player/BigGhostGun.png" id="1_omdg1"]
+[ext_resource type="Script" path="res://Player/big_ghost_gun.gd" id="2_754uu"]
+
+[node name="BigGhostGun" type="Sprite2D"]
+texture = ExtResource("1_omdg1")
+script = ExtResource("2_754uu")
+
+[node name="BulletPosition" type="Marker2D" parent="."]
+position = Vector2(8, 0)

@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://gguvth8dwy0r"]
+
+[ext_resource type="Texture2D" uid="uid://b4j3atfggt5rn" path="res://Player/Skeleton.png" id="1_5t0br"]
+[ext_resource type="Script" path="res://Player/skeleton.gd" id="1_thmcx"]
+[ext_resource type="Texture2D" uid="uid://7fjajgqun3k5" path="res://Shadows/MediumShadow.png" id="2_dqxtp"]
+[ext_resource type="Texture2D" uid="uid://ci24mhph26jxw" path="res://Player/Gun.png" id="3_bcwgb"]
+[ext_resource type="Script" path="res://Player/gun.gd" id="4_rnvid"]
+[ext_resource type="PackedScene" uid="uid://bifj7t1srbgxt" path="res://Hurtboxes and Hitboxes/hurtbox.tscn" id="5_ain17"]
+[ext_resource type="PackedScene" uid="uid://bxdcuuyhqd77n" path="res://Player/big_gun.tscn" id="6_ckrmn"]
+[ext_resource type="PackedScene" uid="uid://jm8x70mkkm5q" path="res://Player/ghost_gun.tscn" id="8_yjw1a"]
+[ext_resource type="PackedScene" uid="uid://dbxba5uxw4yoh" path="res://Player/big_ghost_gun.tscn" id="9_2dtpa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ltp4"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6btpm"]
+radius = 7.07107
+
+[node name="Skeleton" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_thmcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("2_dqxtp")
+
+[node name="SkeletonSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_5t0br")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3ltp4")
+
+[node name="Gun" type="Sprite2D" parent="."]
+texture = ExtResource("3_bcwgb")
+script = ExtResource("4_rnvid")
+
+[node name="Marker2D" type="Marker2D" parent="Gun"]
+visible = false
+position = Vector2(4, 0)
+
+[node name="PlayerHurtbox" parent="." instance=ExtResource("5_ain17")]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" parent="PlayerHurtbox" index="0"]
+shape = SubResource("CircleShape2D_6btpm")
+debug_color = Color(0.7, 0.559347, 0, 0.42)
+
+[node name="BigGun" parent="." instance=ExtResource("6_ckrmn")]
+visible = false
+
+[node name="GhostGun" parent="." instance=ExtResource("8_yjw1a")]
+visible = false
+
+[node name="BigGhostGun" parent="." instance=ExtResource("9_2dtpa")]
+visible = false
+
+[connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="PlayerHurtbox"]
