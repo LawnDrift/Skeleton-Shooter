@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ww81irwg8lhc"]
+
+[ext_resource type="AudioStream" uid="uid://bs8mqt7yh3s8c" path="res://Music and Sounds/BossMusic.mp3" id="1_u1uvh"]
+
+[node name="BossMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_u1uvh")
+pitch_scale = 1.5
+autoplay = true

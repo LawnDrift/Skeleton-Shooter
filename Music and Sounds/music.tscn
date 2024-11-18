@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfsnvt3okqx7f"]
+
+[ext_resource type="AudioStream" uid="uid://b2ef8o5lww3hd" path="res://Music and Sounds/stranger-things-124008.mp3" id="1_2s03k"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_2s03k")
+autoplay = true

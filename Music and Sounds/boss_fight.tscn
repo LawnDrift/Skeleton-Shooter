@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5mr21a7dw87"]
+
+[ext_resource type="AudioStream" uid="uid://co17xirfr52df" path="res://Music and Sounds/video-game-boss-fiight-259885.mp3" id="1_dvkpq"]
+
+[node name="BossFight" type="AudioStreamPlayer"]
+stream = ExtResource("1_dvkpq")
