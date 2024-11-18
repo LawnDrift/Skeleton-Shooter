@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cstacl4uln26"]
+
+[ext_resource type="Texture2D" uid="uid://cw2hg6i4xh6j2" path="res://World/chest.png" id="1_d2ho7"]
+[ext_resource type="Texture2D" uid="uid://7fjajgqun3k5" path="res://Shadows/MediumShadow.png" id="1_rnl40"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkxvq"]
+radius = 28.0179
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6cjyj"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="Curve2D" id="Curve2D_iaqcn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -28, -1, 0, 0, 0, 0, -27, -9, 0, 0, 0, 0, -23, -16, 0, 0, 0, 0, -18, -22, 0, 0, 0, 0, -10, -26, 0, 0, 0, 0, 0, -28, 0, 0, 0, 0, 7, -27, 0, 0, 0, 0, 14, -24, 0, 0, 0, 0, 20, -20, 0, 0, 0, 0, 24, -14, 0, 0, 0, 0, 27, -8, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 27, 8, 0, 0, 0, 0, 25, 14, 0, 0, 0, 0, 20, 19, 0, 0, 0, 0, 14, 24, 0, 0, 0, 0, 7, 27, 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, -7, 27, 0, 0, 0, 0, -15, 23, 0, 0, 0, 0, -20, 19, 0, 0, 0, 0, -24, 13, 0, 0, 0, 0, -27, 7, 0, 0, 0, 0, -28, -1)
+}
+point_count = 24
+
+[node name="Chest" type="StaticBody2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(1.125, 1)
+texture = ExtResource("1_rnl40")
+
+[node name="ChestZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChestZone"]
+shape = SubResource("CircleShape2D_gkxvq")
+debug_color = Color(0.143587, 0.70366, 0.16739, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_d2ho7")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 4.71239
+shape = SubResource("CapsuleShape2D_6cjyj")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-1, 1)
+scale = Vector2(0.767857, 0.767857)
+curve = SubResource("Curve2D_iaqcn")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-28, -1)
+rotation = -1.44644

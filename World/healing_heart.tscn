@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddnqiuogaq1oc"]
+
+[ext_resource type="Texture2D" uid="uid://dxkdlv7m84hy7" path="res://World/heart.png" id="1_notb8"]
+[ext_resource type="Script" path="res://World/healing_heart.gd" id="1_nqvjl"]
+[ext_resource type="Texture2D" uid="uid://cw6xa7ttcmj7x" path="res://Shadows/SmallShadow.png" id="2_bgn6i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8oh6"]
+radius = 4.12311
+
+[node name="HealingHeart" type="Area2D"]
+z_index = -1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_nqvjl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(0.8, 1)
+texture = ExtResource("2_bgn6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_notb8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a8oh6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
