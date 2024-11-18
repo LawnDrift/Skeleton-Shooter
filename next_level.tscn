@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://clmsrg4qatjci"]
+
+[ext_resource type="Script" path="res://next_level.gd" id="1_41nau"]
+[ext_resource type="Texture2D" uid="uid://cud1i1wdnioib" path="res://World/newLevel.png" id="1_pivc7"]
+[ext_resource type="Texture2D" uid="uid://cdedorva34wu7" path="res://Effects/Light.png" id="3_2vvd3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vumw5"]
+atlas = ExtResource("1_pivc7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0asr2"]
+atlas = ExtResource("1_pivc7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg2e1"]
+atlas = ExtResource("1_pivc7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_306ew"]
+atlas = ExtResource("1_pivc7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg0t1"]
+atlas = ExtResource("1_pivc7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_prws7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vumw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0asr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg2e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_306ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg0t1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lm3o5"]
+radius = 16.1245
+
+[node name="NextLevel" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_41nau")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_prws7")
+autoplay = "default"
+frame_progress = 0.319101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lm3o5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.460938, 0.484375)
+color = Color(1, 0.981062, 0.532883, 1)
+shadow_enabled = true
+texture = ExtResource("3_2vvd3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

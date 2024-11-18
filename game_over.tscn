@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://b46nsbrxd3oe"]
+
+[ext_resource type="Shader" path="res://game_over.gdshader" id="1_520hh"]
+[ext_resource type="Script" path="res://game_over.gd" id="1_m18vq"]
+[ext_resource type="FontFile" uid="uid://2v78lui6l4o4" path="res://PixelOperator8-Bold.ttf" id="2_ntvff"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hf6ws"]
+shader = ExtResource("1_520hh")
+shader_parameter/lod = 0.169
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5t4p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0b4w"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.392157)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0o4p"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4c0p"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="InputEventKey" id="InputEventKey_rcyyv"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_5lyjq"]
+events = [SubResource("InputEventKey_rcyyv")]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_m18vq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.635294)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_hf6ws")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -52.0
+offset_right = 69.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ntvff")
+text = "GAME OVER"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -3.0
+offset_right = 77.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ntvff")
+theme_override_styles/focus = SubResource("StyleBoxFlat_h5t4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b0b4w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y0o4p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t4c0p")
+shortcut = SubResource("Shortcut_5lyjq")
+text = "Play Again"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ntvff")
+theme_override_styles/focus = SubResource("StyleBoxFlat_h5t4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b0b4w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y0o4p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t4c0p")
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

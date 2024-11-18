@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://w7sk4aujm0o6"]
+
+[ext_resource type="Texture2D" uid="uid://cud1i1wdnioib" path="res://World/newLevel.png" id="1_1ymxh"]
+[ext_resource type="Script" path="res://shooter.gd" id="2_owgx5"]
+[ext_resource type="PackedScene" uid="uid://ch226rdccj0mx" path="res://player_detection_zone.tscn" id="3_i0h6g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45wyb"]
+atlas = ExtResource("1_1ymxh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k7pc"]
+atlas = ExtResource("1_1ymxh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf74c"]
+atlas = ExtResource("1_1ymxh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4h2p"]
+atlas = ExtResource("1_1ymxh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2lec"]
+atlas = ExtResource("1_1ymxh")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ooixc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45wyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k7pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf74c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4h2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2lec")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tby3f"]
+radius = 188.322
+
+[node name="Shooter" type="AnimatedSprite2D"]
+modulate = Color(1, 0.0922561, 0.688201, 1)
+sprite_frames = SubResource("SpriteFrames_ooixc")
+autoplay = "default"
+script = ExtResource("2_owgx5")
+
+[node name="bulletPosition" type="Marker2D" parent="."]
+
+[node name="playerDetectionZone" parent="." instance=ExtResource("3_i0h6g")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="playerDetectionZone" index="0"]
+shape = SubResource("CircleShape2D_tby3f")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="playerDetectionZone"]
